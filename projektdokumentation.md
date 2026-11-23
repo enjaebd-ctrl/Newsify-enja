@@ -1,12 +1,12 @@
 # Projektdokumentation
 
-**Navn:** 
+Navn: Enja lahn blauenfeldt
 
-**Hold:** WUxx
+Hold: WU16
 
-**Uddannelse:** Webudvikler
+Uddannelse: Webudvikler
 
-**Uddannelsessted:** Roskilde Tekniske Skole
+Uddannelsessted: Roskilde Tekniske Skole
 
 [Link til min applikaton](http://example.com/)
 
@@ -14,13 +14,12 @@
 ## Teknologier
 
 -   HTML
--   CSS
+-   SCSS
 -   JavaScript
--   Webpack
--	Jest
--   ...
+-	Reakt
+-	Vite
+-	Github
 
----
 
 
 
