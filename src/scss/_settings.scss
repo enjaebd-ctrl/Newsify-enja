@@ -2,26 +2,42 @@
 
 .settings {
   &__titel {
-    margin: 8px 0;
+    margin: 8px 0 0;
     text-align: center;
-    font-size: 32px;
+    font-size: 28px;
+    font-weight: 700;
     color: $gron;
   }
 
   &__under {
-    margin: 0 0 16px;
+    margin: 4px 0 20px;
     text-align: center;
+    font-size: 14px;
   }
 }
 
 .kontakt {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   padding: 14px 16px;
   border-top: 1px solid var(--linje);
-  text-transform: uppercase;
-  font-weight: bold;
+
+  &:last-of-type {
+    border-bottom: 1px solid var(--linje);
+  }
+
+  .logo {
+    height: 18px;
+  }
+
+  &__navn {
+    flex: 1;
+    font-family: $serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 
   input {
     display: none;
@@ -30,9 +46,9 @@
   // Selve kontakten
   &__glider {
     position: relative;
-    width: 50px;
-    height: 28px;
-    border-radius: 14px;
+    width: 46px;
+    height: 26px;
+    border-radius: 13px;
     background: #bbb;
     transition: background 0.3s;
 
@@ -41,8 +57,8 @@
       position: absolute;
       top: 3px;
       left: 3px;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: #fff;
       transition: transform 0.3s;
@@ -54,17 +70,26 @@
   }
 
   input:checked + .kontakt__glider::before {
-    transform: translateX(22px);
+    transform: translateX(20px);
   }
 }
 
 .tema-knap {
   display: block;
-  margin: 24px auto;
-  padding: 12px 32px;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  margin: 24px 16px 0;
+  padding: 11px;
   border: 1px solid $gron;
   border-radius: 24px;
   background: none;
   color: $gron;
-  font-size: 16px;
+  font-size: 13px;
+}
+
+.versjon {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 10px;
+  color: #aaa;
 }

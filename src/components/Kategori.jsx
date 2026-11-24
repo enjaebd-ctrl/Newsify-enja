@@ -1,30 +1,32 @@
 import { useEffect, useState } from 'react'
 import { hentTopStories } from '../api'
 import Artikel from './Artikel'
+import KategoriBoks from './KategoriBoks'
 
-function Kategori({ navn, sektion, onGem }) {
+function Kategori({ navn, sektion, soeg, onGem }) {
   const [artikler, setArtikler] = useState([])
-  const [lukket, setLukket] = useState(false)
 
+  // Henter nyhederne når komponenten kommer frem
   useEffect(() => {
-    hentTopStories(sektion).then(setArtikler)
+    hentTopStories(sektion).then((data) => setArtikler(data))
   }, [sektion])
 
-  return (
-    <div className={lukket ? 'kategori lukket' : 'kategori'}>
-      <button className="kategori__top" onClick={() => setLukket(!lukket)}>
-        {navn}
-        <span>⌄</span>
-      </button>
+  // Søgefeltet filtrerer på overskriften
+  const viste = artikler.filter((a) =>
+    a.title.toLowerCase().includes(soeg.toLowerCase())
+  )
 
-      <div className="kategori__indhold">
-        <div className="kategori__liste">
-          {artikler.map((a) => (
-            <Artikel key={a.url} artikel={a} type="gem" onKnap={() => onGem(a)} />
-          ))}
-        </div>
-      </div>
-    </div>
+  return (
+    <KategoriBoks navn={navn}>
+      {viste.map((a) => (
+        <Artikel
+          key={a.url}
+          artikel={a}
+          type="gem"
+          onKnap={() => onGem({ ...a, kategori: navn })}
+        />
+      ))}
+    </KategoriBoks>
   )
 }
 

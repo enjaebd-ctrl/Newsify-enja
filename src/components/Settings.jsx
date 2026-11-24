@@ -1,8 +1,19 @@
 import { kategorier } from '../data/kategorier'
+import Logo from './Logo'
 
 function Settings({ indstillinger, setIndstillinger, tema, setTema }) {
+  // Slår en kategori til eller fra
   function skiftKategori(sektion) {
     setIndstillinger({ ...indstillinger, [sektion]: !indstillinger[sektion] })
+  }
+
+  // Skifter mellem mørkt og lyst tema
+  function skiftTema() {
+    if (tema === 'dark') {
+      setTema('light')
+    } else {
+      setTema('dark')
+    }
   }
 
   return (
@@ -12,7 +23,8 @@ function Settings({ indstillinger, setIndstillinger, tema, setTema }) {
 
       {kategorier.map((k) => (
         <label className="kontakt" key={k.sektion}>
-          <span>{k.navn}</span>
+          <Logo />
+          <span className="kontakt__navn">{k.navn}</span>
           <input
             type="checkbox"
             checked={indstillinger[k.sektion]}
@@ -22,9 +34,11 @@ function Settings({ indstillinger, setIndstillinger, tema, setTema }) {
         </label>
       ))}
 
-      <button className="tema-knap" onClick={() => setTema(tema === 'dark' ? 'light' : 'dark')}>
+      <button className="tema-knap" onClick={skiftTema}>
         Toggle dark mode
       </button>
+
+      <p className="versjon">Version 1.0.0</p>
     </>
   )
 }

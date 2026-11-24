@@ -1,3 +1,4 @@
+// NYT har ikke Europe, så jeg bruger World i stedet
 export const kategorier = [
   { navn: 'World', sektion: 'world' },
   { navn: 'Health', sektion: 'health' },

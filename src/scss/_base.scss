@@ -3,13 +3,15 @@
 :root {
   --bg: #fff;
   --tekst: #222;
-  --linje: #ddd;
+  --linje: #e3e3e3;
+  --graa: #f2f2f2;
 }
 
 :root.dark {
   --bg: #16171d;
   --tekst: #f3f4f6;
   --linje: #2e303a;
+  --graa: #2a2c36;
 }
 
 body {
@@ -17,16 +19,26 @@ body {
   max-width: 430px; // mobilbredde
   background: var(--bg);
   color: var(--tekst);
-  font-family: system-ui, sans-serif;
+  font-family: $sans;
 }
 
 .top {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0 10px;
 
   h1 {
-    margin: 16px 0;
-    font-size: 24px;
+    margin: 0;
+    font-family: $serif;
+    font-size: 20px;
   }
+}
+
+.logo {
+  height: 28px;
+  width: auto;
 }
 
 .side {
@@ -36,6 +48,19 @@ body {
   &.aktiv {
     display: block;
   }
+}
+
+.soeg {
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  margin: 8px 16px 14px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--graa);
+  color: var(--tekst);
+  font-size: 12px;
 }
 
 .tom {

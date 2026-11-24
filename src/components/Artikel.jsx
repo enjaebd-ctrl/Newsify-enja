@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
 import { BsBookmark, BsTrash } from 'react-icons/bs'
 
-const SAVE_WIDTH = 100 // bredden på gem/slet-feltet
-const MIN_SWIPE = 50 // så langt skal man swipe, før det tæller
+const SAVE_WIDTH = 100 // hvor bredt gem/slet-feltet er
+const MIN_SWIPE = 50 // hvor langt man skal swipe før det tæller
 
-// type er "gem" eller "slet". onKnap kører, når man trykker på knappen.
+// type er enten "gem" eller "slet"
+// onKnap kører, når man trykker på knappen
 function Artikel({ artikel, type, onKnap }) {
   const [startX, setStartX] = useState(0)
   const swiperRef = useRef(null)
@@ -15,11 +16,13 @@ function Artikel({ artikel, type, onKnap }) {
 
   function handleTouchEnd(event) {
     const endX = event.changedTouches[0].screenX
-    const distance = startX - endX // positivt tal = swipe mod venstre
+    const distance = startX - endX // positivt tal betyder swipe mod venstre
 
     if (distance > MIN_SWIPE) {
-      swiperRef.current.style.transform = `translateX(-${SAVE_WIDTH}px)`
+      // swipe til venstre, så knappen kommer frem
+      swiperRef.current.style.transform = 'translateX(-' + SAVE_WIDTH + 'px)'
     } else if (distance < -MIN_SWIPE) {
+      // swipe til højre, så den går tilbage
       swiperRef.current.style.transform = 'translateX(0)'
     }
   }
@@ -31,10 +34,15 @@ function Artikel({ artikel, type, onKnap }) {
 
   return (
     <div className="swiper__container">
-      <section className="swiper" ref={swiperRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <section
+        className="swiper"
+        ref={swiperRef}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <a className="swiper__article" href={artikel.url} target="_blank" rel="noreferrer">
           <div className="swiper__img">
-            <img src={artikel.billede} alt="" />
+            {artikel.billede && <img src={artikel.billede} alt="" />}
           </div>
           <div className="swiper__tekst">
             <h3>{artikel.title}</h3>
@@ -42,9 +50,9 @@ function Artikel({ artikel, type, onKnap }) {
           </div>
         </a>
 
-        <div className={`swiper__knap swiper__knap--${type}`}>
+        <div className={'swiper__knap swiper__knap--' + type}>
           <button onClick={handleKnap}>
-            {type === 'gem' ? <BsBookmark size={32} /> : <BsTrash size={32} />}
+            {type === 'gem' ? <BsBookmark size={28} /> : <BsTrash size={28} />}
           </button>
         </div>
       </section>

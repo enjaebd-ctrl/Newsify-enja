@@ -1,33 +1,45 @@
 import { useEffect, useState } from 'react'
 import useLocalStorage from './hooks/useLocalStorage'
 import { kategorier } from './data/kategorier'
+import Logo from './components/Logo'
 import Home from './components/Home'
 import Arkiv from './components/Arkiv'
 import Populaer from './components/Populaer'
 import Settings from './components/Settings'
 import Tabbar from './components/Tabbar'
 
-// Alle kategorier er slået til, første gang appen bruges
+// Første gang er alle kategorier slået til
 const startIndstillinger = {}
-kategorier.forEach((k) => (startIndstillinger[k.sektion] = true))
+kategorier.forEach((k) => {
+  startIndstillinger[k.sektion] = true
+})
 
-// Systemets tema bruges, hvis der ikke er gemt noget
-const systemTema = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+// Bruger telefonens tema, hvis brugeren ikke har valgt et selv
+let systemTema = 'light'
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  systemTema = 'dark'
+}
 
 function App() {
   const [side, setSide] = useState('home')
-  const [arkiv, setArkiv] = useLocalStorage('arkiv', [])
-  const [indstillinger, setIndstillinger] = useLocalStorage('kategorier', startIndstillinger)
-  const [tema, setTema] = useLocalStorage('theme', systemTema)
+  const [arkiv, setArkiv] = useLocalStorage('newsify-arkiv', [])
+  const [indstillinger, setIndstillinger] = useLocalStorage('newsify-kategorier', startIndstillinger)
+  const [tema, setTema] = useLocalStorage('newsify-tema', systemTema)
 
   // Sætter klassen "dark" på <html>, når temaet ændrer sig
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', tema === 'dark')
+    if (tema === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
   }, [tema])
 
   function gemArtikel(artikel) {
-    // Gem kun, hvis artiklen ikke allerede ligger i arkivet
-    if (arkiv.some((a) => a.url === artikel.url)) return
+    // Man må ikke gemme den samme artikel to gange
+    const findes = arkiv.some((a) => a.url === artikel.url)
+    if (findes) return
+
     setArkiv([...arkiv, artikel])
   }
 
@@ -38,11 +50,12 @@ function App() {
   return (
     <>
       <header className="top">
+        <Logo />
         <h1>Newsify</h1>
       </header>
 
       <main>
-        {/* Alle sider er med hele tiden, så nyhederne ikke hentes igen. Kun den aktive vises. */}
+        {/* Alle sider ligger i DOM'en hele tiden, så nyhederne ikke hentes igen. Kun den aktive vises */}
         <div className={side === 'home' ? 'side aktiv' : 'side'}>
           <Home indstillinger={indstillinger} onGem={gemArtikel} />
         </div>
