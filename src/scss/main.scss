@@ -1,18 +1,5 @@
-// Farver til lyst tema
-:root {
-  --background-color: #ffffff;
-  --text-color: #1a1a1a;
-  --accent-color: #4a7c1f;
-}
-
-// Farver til mørkt tema
-[data-theme='dark'] {
-  --background-color: #1a1a1a;
-  --text-color: #ffffff;
-}
-
-body {
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
+@use 'base';
+@use 'swiper';
+@use 'kategori';
+@use 'settings';
+@use 'tabbar';

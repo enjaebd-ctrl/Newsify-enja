@@ -1,0 +1,70 @@
+@use 'variabler' as *;
+
+.settings {
+  &__titel {
+    margin: 8px 0;
+    text-align: center;
+    font-size: 32px;
+    color: $gron;
+  }
+
+  &__under {
+    margin: 0 0 16px;
+    text-align: center;
+  }
+}
+
+.kontakt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-top: 1px solid var(--linje);
+  text-transform: uppercase;
+  font-weight: bold;
+
+  input {
+    display: none;
+  }
+
+  // Selve kontakten
+  &__glider {
+    position: relative;
+    width: 50px;
+    height: 28px;
+    border-radius: 14px;
+    background: #bbb;
+    transition: background 0.3s;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.3s;
+    }
+  }
+
+  input:checked + .kontakt__glider {
+    background: $gron;
+  }
+
+  input:checked + .kontakt__glider::before {
+    transform: translateX(22px);
+  }
+}
+
+.tema-knap {
+  display: block;
+  margin: 24px auto;
+  padding: 12px 32px;
+  border: 1px solid $gron;
+  border-radius: 24px;
+  background: none;
+  color: $gron;
+  font-size: 16px;
+}

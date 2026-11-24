@@ -1,0 +1,27 @@
+@use 'variabler' as *;
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: 100%;
+  max-width: 430px;
+  height: $tabbar-hojde;
+  background: var(--bg);
+  border-top: 1px solid var(--linje);
+
+  button {
+    flex: 1;
+    border: none;
+    background: none;
+    color: var(--tekst);
+    font-size: 12px;
+
+    &.aktiv {
+      color: $gron;
+      font-weight: bold;
+    }
+  }
+}

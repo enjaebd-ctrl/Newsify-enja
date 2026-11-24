@@ -1,0 +1,44 @@
+@use 'variabler' as *;
+
+:root {
+  --bg: #fff;
+  --tekst: #222;
+  --linje: #ddd;
+}
+
+:root.dark {
+  --bg: #16171d;
+  --tekst: #f3f4f6;
+  --linje: #2e303a;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 430px; // mobilbredde
+  background: var(--bg);
+  color: var(--tekst);
+  font-family: system-ui, sans-serif;
+}
+
+.top {
+  text-align: center;
+
+  h1 {
+    margin: 16px 0;
+    font-size: 24px;
+  }
+}
+
+.side {
+  display: none;
+  padding-bottom: $tabbar-hojde + 20px;
+
+  &.aktiv {
+    display: block;
+  }
+}
+
+.tom {
+  text-align: center;
+  padding: 40px;
+}
