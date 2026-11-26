@@ -7,6 +7,7 @@ import onboarding3 from '../assets/Onboarding3.png'
 import onboarding3Mork from '../assets/Onboarding3-dark.png'
 
 // De tre sider i onboarding, med et billede til hvert tema
+// Det er en liste, så vi kun skal skrive komponenten én gang og bare skifte indhold
 const sider = [
   {
     billede: onboarding1,
@@ -28,11 +29,16 @@ const sider = [
   },
 ]
 
+// tema bruges til at vælge billede, onFaerdig kører når onboarding er slut
 function Onboarding({ tema, onFaerdig }) {
+  // nr er hvilken side vi er på (0, 1 eller 2)
   const [nr, setNr] = useState(0)
+
+  // true når vi er på den sidste side
   const sidste = nr === sider.length - 1
 
   function fortsaet() {
+    // Sidste side: færdig. Ellers gå en side frem
     if (sidste) {
       onFaerdig()
     } else {
@@ -56,6 +62,7 @@ function Onboarding({ tema, onFaerdig }) {
         <h2>{sider[nr].titel}</h2>
         <p>{sider[nr].tekst}</p>
 
+        {/* En prik for hver side. Den aktive prik får klassen "aktiv" og bliver lang og grøn */}
         <div className="onboarding__prikker">
           {sider.map((s, i) => (
             <span key={i} className={i === nr ? 'prik aktiv' : 'prik'}></span>
@@ -63,6 +70,7 @@ function Onboarding({ tema, onFaerdig }) {
         </div>
 
         <div className="onboarding__knapper">
+          {/* Skip går direkte til slutningen */}
           <button className="knap knap--outline" onClick={onFaerdig}>
             Skip
           </button>

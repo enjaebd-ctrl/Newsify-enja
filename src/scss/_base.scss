@@ -1,5 +1,9 @@
+// Henter variablerne ind. "as *" betyder, at vi kan skrive $gron i stedet for variabler.$gron
 @use 'variabler' as *;
 
+// Temafarver som CSS-variabler (starter med --)
+// De kan ændre sig i browseren, og alle steder, der bruger dem med var(), følger med
+// :root er hele siden. Det er de lyse farver, som gælder fra start
 :root {
   --bg: #fff;
   --tekst: #222;
@@ -8,6 +12,7 @@
   --knapkant: #c8c8c8; // kant på Facebook/Google-knapperne
 }
 
+// Når App.jsx sætter klassen "dark" på siden, bliver værdierne herunder brugt i stedet
 :root.dark {
   --bg: #222;
   --tekst: #f3f4f6;
@@ -17,24 +22,26 @@
 }
 
 // I Figma er søgefeltet lysegråt, også i darkmode
+// Så her overskriver vi farverne, kun når temaet er mørkt
 :root.dark .soeg {
   background: #d9d9d9;
   color: #222;
 }
 
 body {
-  margin: 0 auto;
+  margin: 0 auto; // auto til siderne centrerer appen, hvis skærmen er bredere end 430px
   max-width: 430px; // mobilbredde
   background: var(--bg);
   color: var(--tekst);
   font-family: $sans;
 }
 
+// Øverste del med logo og navn
 .top {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  justify-content: center; // centreret vandret
+  align-items: center; // centreret lodret
+  gap: 8px; // afstand mellem logo og navn
   padding: 14px 0 10px;
 
   h1 {
@@ -46,12 +53,14 @@ body {
 
 .logo {
   height: 28px;
-  width: auto;
+  width: auto; // bredden følger højden, så logoet ikke bliver strakt
 }
 
+// Hver side (Home, Archive osv.) er skjult, med mindre den har klassen "aktiv"
+// App.jsx sætter klassen på den side, man står på
 .side {
   display: none;
-  padding-bottom: $tabbar-hojde + 20px;
+  padding-bottom: $tabbar-hojde + 20px; // plads under indholdet, så tabbaren ikke dækker det sidste
 
   &.aktiv {
     display: block;
@@ -60,8 +69,8 @@ body {
 
 .soeg {
   display: block;
-  box-sizing: border-box;
-  width: calc(100% - 32px);
+  box-sizing: border-box; // gør at padding er med i bredden, så feltet ikke bliver for bredt
+  width: calc(100% - 32px); // hele bredden minus 16px luft på hver side
   margin: 8px 16px 14px;
   padding: 10px 12px;
   border: none;
@@ -71,6 +80,7 @@ body {
   font-size: 12px;
 }
 
+// Teksten når arkivet er tomt
 .tom {
   text-align: center;
   padding: 40px;

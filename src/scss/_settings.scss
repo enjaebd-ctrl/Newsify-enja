@@ -17,13 +17,14 @@
 }
 
 // En række i settings: kontakten til venstre og pilene til højre
+// Bruges ikke i Settings.jsx lige nu. Den hører til funktionen med at ændre rækkefølge
 .kontakt-raekke {
   display: flex;
   align-items: center;
   border-top: 1px solid var(--linje);
 
   &:last-of-type {
-    border-bottom: 1px solid var(--linje);
+    border-bottom: 1px solid var(--linje); // kant under den sidste række
   }
 
   &__pile {
@@ -47,6 +48,7 @@
   }
 }
 
+// Én kategori i listen med en kontakt til højre
 .kontakt {
   flex: 1;
   display: flex;
@@ -59,18 +61,19 @@
   }
 
   &__navn {
-    flex: 1;
+    flex: 1; // skubber kontakten helt ud til højre
     font-family: $serif;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
   }
 
+  // Selve checkboxen skjules. Den virker stadig, fordi den ligger inde i en label
   input {
     display: none;
   }
 
-  // Selve kontakten
+  // Selve kontakten: en grå aflang boks med en hvid cirkel (::before) indeni
   &__glider {
     position: relative;
     width: 46px;
@@ -88,19 +91,22 @@
       height: 20px;
       border-radius: 50%;
       background: #fff;
-      transition: transform 0.3s;
+      transition: transform 0.3s; // cirklen glider i stedet for at hoppe
     }
   }
 
+  // "input:checked + .kontakt__glider" betyder: glideren lige efter en afkrydset checkbox
+  // Så farven og cirklens placering skifter, uden at vi skal bruge JavaScript
   input:checked + .kontakt__glider {
     background: $gron;
   }
 
   input:checked + .kontakt__glider::before {
-    transform: translateX(20px);
+    transform: translateX(20px); // cirklen flyttes til højre
   }
 }
 
+// Knappen der skifter mellem lyst og mørkt tema
 .tema-knap {
   display: block;
   box-sizing: border-box;

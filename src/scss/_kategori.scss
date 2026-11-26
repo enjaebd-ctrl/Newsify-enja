@@ -23,21 +23,25 @@
   }
 
   &__pil {
-    margin-left: auto;
-    transition: transform 0.4s;
+    margin-left: auto; // skubber pilen helt ud til højre
+    transition: transform 0.4s; // pilen drejer blødt
   }
 
   // Åben/luk-animation: højden går fra 1fr til 0fr
+  // Man kan ikke animere højden til "auto" med almindelig height
+  // Men man kan animere størrelsen på en grid-række, og det giver samme effekt
   &__indhold {
     display: grid;
     grid-template-rows: 1fr;
     transition: grid-template-rows 0.4s ease;
   }
 
+  // overflow: hidden gør, at indholdet bliver skjult, når rækken bliver 0 høj
   &__liste {
     overflow: hidden;
   }
 
+  // Når JavaScript sætter klassen "lukket", bliver rækken 0 høj og pilen peger mod højre
   &.lukket {
     .kategori__indhold {
       grid-template-rows: 0fr;

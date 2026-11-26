@@ -1,21 +1,24 @@
 @use 'variabler' as *;
 
+// Knapperne i bunden af skærmen
 .tabbar {
-  position: fixed;
+  position: fixed; // sidder fast i bunden, selv når man scroller
   bottom: 0;
+  // De to næste linjer centrerer den: først flyttes den halvt ind fra venstre,
+  // og så trækkes den halvdelen af sin egen bredde tilbage
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   width: 100%;
-  max-width: 430px;
+  max-width: 430px; // samme bredde som resten af appen
   height: $tabbar-hojde;
   background: var(--bg);
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.06); // lille skygge oven på
 
   button {
-    flex: 1;
+    flex: 1; // alle fire knapper fylder lige meget
     display: flex;
-    flex-direction: column;
+    flex-direction: column; // ikonet øverst og teksten under
     align-items: center;
     justify-content: center;
     gap: 3px;
@@ -24,6 +27,7 @@
     color: var(--tekst);
     font-size: 10px;
 
+    // Den valgte fane (klassen sættes i Tabbar.jsx)
     &.aktiv {
       color: $gron;
     }

@@ -1,5 +1,8 @@
-$gron: #4a7c10;
-$rod: #f0605e;
-$tabbar-hojde: 64px;
-$serif: 'Playfair Display', serif;
-$sans: 'Open Sans', sans-serif;
+// Værdier vi bruger flere steder, så vi kun skal ændre dem ét sted
+// Det er SCSS-variabler (starter med $). De bliver erstattet med værdien, når Vite bygger CSS'en
+// De kan ikke ændre sig i browseren. Det kan temafarverne (--bg osv. i _base.scss), og derfor bruger temaet dem
+$gron: #4a7c10; // appens hovedfarve (knapper, aktiv fane, gem-felt)
+$rod: #f0605e; // slet-feltet
+$tabbar-hojde: 64px; // bruges både til tabbaren og til afstanden under indholdet
+$serif: 'Playfair Display', serif; // overskrifter (med fallback til serif, hvis skrifttypen ikke hentes)
+$sans: 'Open Sans', sans-serif; // brødtekst

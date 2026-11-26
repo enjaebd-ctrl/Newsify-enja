@@ -1,3 +1,7 @@
+// Samler al styling i én fil. Det er den, main.jsx importerer
+// Filerne med _ foran navnet (fx _base.scss) kaldes partials
+// De bliver ikke til deres egen CSS-fil, men bliver hentet ind her med @use
+// Man skriver navnet uden _ og uden .scss
 @use 'base';
 @use 'swiper';
 @use 'kategori';

@@ -5,20 +5,22 @@
   border-bottom: 1px solid var(--linje);
 }
 
+// Rækken er en flexbox: artiklen fylder 100%, og knappen ligger lige udenfor til højre
+// Når JavaScript rykker rækken til venstre (translateX), glider knappen ind
 .swiper {
   display: flex;
   height: 96px; // var 84px
-  transition: transform 0.3s;
-  touch-action: pan-y;
+  transition: transform 0.3s; // gør at rækken glider i stedet for at hoppe
+  touch-action: pan-y; // browseren må kun scrolle op/ned, så vi selv styrer swipe til siden
 
   &__article {
     display: flex;
-    flex: 0 0 100%;
+    flex: 0 0 100%; // fylder hele bredden og må ikke blive mindre
     color: inherit;
     text-decoration: none;
   }
 
-   &__img {
+  &__img {
     flex-shrink: 0;
     box-sizing: border-box;
     width: 96px; // var 84px
@@ -28,22 +30,22 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; // billedet fylder feltet uden at blive strakt
       border-radius: 3px;
-      background: #d9d9d9;
+      background: #d9d9d9; // grå boks, hvis billedet ikke er hentet endnu
     }
   }
 
-   &__tekst {
+  &__tekst {
     overflow: hidden;
     padding: 12px 16px 12px 0;
 
-        h3 {
+    h3 {
       display: -webkit-box;
       -webkit-line-clamp: 2; // overskriften må højst fylde 2 linjer
       line-clamp: 2;
       -webkit-box-orient: vertical;
-      overflow: hidden;
+      overflow: hidden; // resten skjules, og der kommer ... til sidst
       margin: 0;
       font-family: $serif;
       font-size: 12px;
@@ -59,9 +61,9 @@
       margin: 4px 0 0;
       font-size: 11px;
     }
-  
   }
 
+  // Knappen skal være lige så bred som SAVE_WIDTH i Artikel.jsx
   &__knap {
     flex: 0 0 100px;
     display: flex;
