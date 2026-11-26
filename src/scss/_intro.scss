@@ -1,0 +1,201 @@
+@use 'variabler' as *;
+
+// Knapper der bruges i onboarding og auth
+.knap {
+  padding: 20px;
+  border: 1px solid $gron;
+  border-radius: 40px;
+  background: $gron;
+  color: #fff;
+  font-family: $sans;
+  font-size: 17px;
+  font-weight: 600;
+
+  // Knap med kun kant (Skip)
+  &--outline {
+    background: none;
+    color: $gron;
+  }
+
+  // Facebook og Google
+  &--sosial {
+    background: none;
+    border-color: var(--knapkant);
+    color: var(--tekst);
+  }
+}
+
+// Splash screens
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh; // på telefonen tæller 100vh browserens bjælker med
+
+  &__logo {
+    height: 112px;
+    transition: height 0.6s ease; // logoet vokser fra splash 1 til 2
+
+    &--stor {
+      height: 250px;
+    }
+  }
+
+  &__navn {
+    margin: 20px 0 0;
+    font-family: $serif;
+    font-size: 48px;
+    animation: dukkeop 0.6s;
+  }
+}
+
+@keyframes dukkeop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Onboarding
+.onboarding {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+
+  &__billede {
+    height: 52%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  &__indhold {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 28px;
+    text-align: center;
+
+    h2 {
+      margin: 0 0 16px;
+      font-family: $serif;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+  }
+
+  // margin-top: auto skubber prikker og knapper ned i bunden
+  &__prikker {
+    display: flex;
+    gap: 8px;
+    margin: auto 0 28px;
+  }
+
+  &__knapper {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+
+    .knap {
+      flex: 1;
+    }
+  }
+}
+
+// Prikkerne under teksten
+.prik {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: #c4c4c4;
+  transition: width 0.3s, background 0.3s;
+
+  &.aktiv {
+    width: 66px;
+    background: $gron;
+  }
+}
+
+// Auth
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 90px 24px 32px;
+
+  .knap {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__logo {
+    height: 130px;
+  }
+
+  &__navn {
+    margin: 8px 0 20px;
+    font-family: $serif;
+    font-size: 36px;
+  }
+
+  &__tekst {
+    margin: 0 0 44px;
+    font-size: 14px;
+  }
+
+  // Stregerne på hver side af "or"
+  &__eller {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin: 10px 0 30px;
+    font-size: 14px;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--tekst);
+    }
+  }
+
+  // Den grønne skygge under login-knappen
+  &__login {
+    box-shadow: 0 4px 12px rgba(74, 124, 16, 0.4);
+  }
+
+  &__bund {
+    margin: 4px 0 0;
+    font-size: 14px;
+  }
+
+  &__link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $gron;
+    font-size: inherit;
+  }
+}

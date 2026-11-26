@@ -5,13 +5,21 @@
   --tekst: #222;
   --linje: #e3e3e3;
   --graa: #f2f2f2;
+  --knapkant: #c8c8c8; // kant på Facebook/Google-knapperne
 }
 
 :root.dark {
-  --bg: #16171d;
+  --bg: #222;
   --tekst: #f3f4f6;
-  --linje: #2e303a;
+  --linje: #666;
   --graa: #2a2c36;
+  --knapkant: #e5e5e5;
+}
+
+// I Figma er søgefeltet lysegråt, også i darkmode
+:root.dark .soeg {
+  background: #d9d9d9;
+  color: #222;
 }
 
 body {
@@ -66,4 +74,13 @@ body {
 .tom {
   text-align: center;
   padding: 40px;
+}
+
+// Beskeden der vises, mens siden opdateres (swipe ned)
+.opdaterer {
+  margin: 0;
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+  background: var(--graa);
 }
