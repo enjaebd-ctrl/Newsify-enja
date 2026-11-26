@@ -1,10 +1,11 @@
 @use 'variabler' as *;
 
 // Knapper der bruges i onboarding og auth
+// Det er en grøn, rund knap. Varianterne herunder ændrer udseendet
 .knap {
   padding: 20px;
   border: 1px solid $gron;
-  border-radius: 40px;
+  border-radius: 40px; // meget rund, så den ligner en pille
   background: $gron;
   color: #fff;
   font-family: $sans;
@@ -18,6 +19,7 @@
   }
 
   // Facebook og Google
+  // Farverne følger temaet, så de ser rigtige ud i både lys og mørk
   &--sosial {
     background: none;
     border-color: var(--knapkant);
@@ -26,13 +28,14 @@
 }
 
 // Splash screens
+// Logoet er centreret midt på skærmen, både lodret og vandret
 .splash {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  height: 100dvh; // på telefonen tæller 100vh browserens bjælker med
+  height: 100dvh; // på telefonen tæller 100vh browserens bjælker med. dvh gør ikke. Ældre browsere bruger linjen over
 
   &__logo {
     height: 112px;
@@ -47,10 +50,11 @@
     margin: 20px 0 0;
     font-family: $serif;
     font-size: 48px;
-    animation: dukkeop 0.6s;
+    animation: dukkeop 0.6s; // navnet toner ind, når splash 2 vises
   }
 }
 
+// Animationen "dukkeop": fra helt gennemsigtig til synlig
 @keyframes dukkeop {
   from {
     opacity: 0;
@@ -61,6 +65,7 @@
 }
 
 // Onboarding
+// Skærmen er delt i et billede øverst (52%) og indhold nedenunder
 .onboarding {
   display: flex;
   flex-direction: column;
@@ -69,18 +74,18 @@
 
   &__billede {
     height: 52%;
-    overflow: hidden;
+    overflow: hidden; // det der stikker ud over boksen, skjules
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: top;
+      object-fit: cover; // billedet fylder hele boksen uden at blive strakt, og kanterne beskæres
+      object-position: top; // det er bunden af billedet, der bliver beskåret
     }
   }
 
   &__indhold {
-    flex: 1;
+    flex: 1; // fylder resten af skærmen
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,18 +119,19 @@
     width: 100%;
 
     .knap {
-      flex: 1;
+      flex: 1; // de to knapper fylder lige meget
     }
   }
 }
 
 // Prikkerne under teksten
+// Den aktive prik bliver lang og grøn, så man kan se hvilken side man er på
 .prik {
   width: 16px;
   height: 16px;
   border-radius: 8px;
   background: #c4c4c4;
-  transition: width 0.3s, background 0.3s;
+  transition: width 0.3s, background 0.3s; // gør at skiftet glider i stedet for at hoppe
 
   &.aktiv {
     width: 66px;
@@ -133,7 +139,7 @@
   }
 }
 
-// Auth
+// Auth (login-siden)
 .auth {
   display: flex;
   flex-direction: column;
@@ -164,6 +170,8 @@
   }
 
   // Stregerne på hver side af "or"
+  // ::before og ::after laver to ekstra elementer på hver side af teksten uden at skrive dem i HTML
+  // flex: 1 gør, at de strækker sig ud og fylder pladsen
   &__eller {
     display: flex;
     align-items: center;
@@ -191,11 +199,12 @@
     font-size: 14px;
   }
 
+  // "Sign up" er en knap, men skal ligne et link
   &__link {
     padding: 0;
     border: none;
     background: none;
     color: $gron;
-    font-size: inherit;
+    font-size: inherit; // arver skriftstørrelsen fra teksten omkring
   }
 }

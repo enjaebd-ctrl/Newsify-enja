@@ -1,7 +1,7 @@
 import { kategorier } from '../data/kategorier'
 import Logo from './Logo'
 
-// Settings: slå kategorier til/fra og skift mellem lyst og mørkt tema
+// Settings: slå kategorier til/fra og skift tema
 // Alt bliver gemt i localStorage via App, så det huskes
 function Settings({ indstillinger, setIndstillinger, tema, setTema }) {
   // Slår en kategori til eller fra
@@ -26,27 +26,31 @@ function Settings({ indstillinger, setIndstillinger, tema, setTema }) {
       <h2 className="settings__titel">Settings</h2>
       <p className="settings__under">Categories</p>
 
-      {/* En kontakt for hver kategori */}
-      {/* Det er en label om en skjult checkbox, så man kan trykke hvor som helst på rækken */}
+      {/* En række for hver kategori: logo og navn til venstre, kontakten helt ude til højre (som i Figma) */}
       {kategorier.map((k) => (
-        <label className="kontakt" key={k.sektion}>
+        <div className="kontakt-raekke" key={k.sektion}>
           <Logo />
-          <span className="kontakt__navn">{k.navn}</span>
-          <input
-            type="checkbox"
-            checked={indstillinger[k.sektion]}
-            onChange={() => skiftKategori(k.sektion)}
-          />
-          {/* Det er den her, man ser som en kontakt. CSS styrer den ud fra om checkboxen er afkrydset */}
-          <span className="kontakt__glider"></span>
-        </label>
+          <span className="kontakt-raekke__navn">{k.navn}</span>
+
+          {/* Kontakten er en label om en skjult checkbox, så man kan trykke på hele kontakten */}
+          <label className="kontakt">
+            <input
+              type="checkbox"
+              checked={indstillinger[k.sektion]}
+              onChange={() => skiftKategori(k.sektion)}
+              aria-label={'Show ' + k.navn}
+            />
+            {/* Det er den her, man ser som en kontakt. CSS styrer den ud fra om checkboxen er afkrydset */}
+            <span className="kontakt__glider"></span>
+          </label>
+        </div>
       ))}
 
       <button className="tema-knap" onClick={skiftTema}>
         Toggle dark mode
       </button>
 
-      <p className="versjon">Version 1.0.0</p>
+      <p className="versjon">Version 4.8.15.16.23.42</p>
     </>
   )
 }

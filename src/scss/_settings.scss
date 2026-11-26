@@ -16,45 +16,17 @@
   }
 }
 
-// En række i settings: kontakten til venstre og pilene til højre
-// Bruges ikke i Settings.jsx lige nu. Den hører til funktionen med at ændre rækkefølge
+// En række i settings: logo og navn til venstre, og kontakten helt ude til højre
 .kontakt-raekke {
   display: flex;
   align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
   border-top: 1px solid var(--linje);
 
   &:last-of-type {
     border-bottom: 1px solid var(--linje); // kant under den sidste række
   }
-
-  &__pile {
-    display: flex;
-    flex-direction: column;
-    padding-right: 8px;
-
-    button {
-      padding: 2px 8px;
-      border: none;
-      background: none;
-      color: var(--tekst);
-      cursor: pointer;
-
-      // Den øverste kan ikke flyttes op, og den nederste kan ikke flyttes ned
-      &:disabled {
-        opacity: 0.3;
-        cursor: default;
-      }
-    }
-  }
-}
-
-// Én kategori i listen med en kontakt til højre
-.kontakt {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 16px;
 
   .logo {
     height: 18px;
@@ -67,7 +39,10 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+}
 
+// Selve kontakten (checkboxen og glideren)
+.kontakt {
   // Selve checkboxen skjules. Den virker stadig, fordi den ligger inde i en label
   input {
     display: none;
@@ -75,6 +50,7 @@
 
   // Selve kontakten: en grå aflang boks med en hvid cirkel (::before) indeni
   &__glider {
+    display: block;
     position: relative;
     width: 46px;
     height: 26px;
