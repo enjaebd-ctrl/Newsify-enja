@@ -1,7 +1,5 @@
 /*
-  ============================================================
   HUSKESEDDEL TIL NEWSIFY
-  ============================================================
 
   HVAD ER DET?
   En nyheds-app til mobilen. Den henter nyheder fra New York Times,
@@ -9,12 +7,17 @@
 
   HVORDAN HÆNGER FILERNE SAMMEN?
   main.jsx            Starter hele appen og lægger den ind i index.html
+
   App.jsx             Hjernen. Her ligger alt det, appen skal huske
                       (arkiv, tema, indstillinger), og den sender det ned til resten
+
   api.js              Henter nyhederne fra New York Times, gemmer dem i 10 minutter
                       og prøver igen, hvis NYT siger "for mange kald"
+
   data/kategorier.js  Listen over kategorier (World, Health, ...)
+
   hooks/useLocalStorage.js  Min egen hjælper, der husker ting, selv om man lukker siden
+
   components/         Byggeklodserne (se nedenfor)
   scss/               Alt udseendet, delt op i små filer
 
