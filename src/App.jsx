@@ -77,6 +77,8 @@
     App sletter de gemte nyheder fra localStorage og genindlæser siden,
     så nyhederne bliver hentet igen.
   ============================================================
+
+  variabel-metode/typeangivelse
 */
 
 import { useEffect, useState } from 'react'
